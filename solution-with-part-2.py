@@ -29,4 +29,4 @@ for destination in destinations:
 
 
   print(f"{destination} is located at ({lat}, {lng})")
-  print(f"At {destination} right now, it's {weather_description} with a temperature of {temperature:.1f}°F\n")
+  print(f"At {destination} right now, it's {weather_description} with a temperature of {temperature:.1f}\N{DEGREE SIGN}F\n")
