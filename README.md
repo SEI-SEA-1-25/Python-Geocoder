@@ -1,40 +1,24 @@
-# Python Modules, Packages, and APIs: Practice Problems, Part 1
+# Python Geocoder - Modules, Packages, and APIs
 
-In this assignment, you're going to write code for a challenge problem.
+## Learning Objectives: 
+- Importing and using python modules.
+- Iterating through lists and drilling into dictionaries.
+- Reading documentation for modules and APIs.
 
-You will practice these programming concepts we've covered in class:
+## Introduction:
 
-- Including and using modules and packages
-
-**Note:** This lab is Part 1 of a two-part assignment. Save your solution code--the next homework will build off of it!
-
----
-
-## Deliverables
-
-This lab will be a two-part code challenge with a bonus. It will be a little different than the other assignments because Part 2 will build on the code from Part 1. You can put all of your code in one file called `solution.py`. Right now, just make that one file.
+This lab will be a two-part code challenge with a bonus. Part 2 will build on the code from Part 1. You can put all of your code in one file called `main.py`.
 
 _Reminder: you can run the file from your command line with the following:_
 
 ```bash
-python solution.py
+python3 main.py
 ```
 
-> **Hint:** Make sure your `solution.py` program is printing something out with a `print` statement. Otherwise, you won't see any output from running it!
+> **Hint:** Make sure your `main.py` program is printing something out with a `print` statement. Otherwise, you won't see any output from running it!
 
-## Requirements:
 
-By the end of this, you should have:
-
-- A file called `solution.py` with your code from this challenge.
-
----
-
-# Code Challenges
-
-## Problem 1: Geo Cody
-
-### Skill you're practicing: importing and using modules/packages.
+## Part 1: Geo Cody
 
 Cody and his friends Heather and Matt are going on a road trip across the Western United States and Canada. They want to visit several landmarks, national parks, and big cities. Here's their agenda:
 
@@ -55,7 +39,7 @@ Capilano Suspension Bridge
 
 Your job is to put these destinations into a list of strings called `destinations`. Then, import the [geocoder module](https://geocoder.readthedocs.io/providers/ArcGIS.html#geocoding) and use it to translate each of the landmarks into latitude-longitude coordinates. You'll need to loop through the list and print each location's latitude and longitude. We will be using the `arcgis` method from our `geocoder` module to translate the places to coordinates. Visit the [docs](https://geocoder.readthedocs.io/results.html) for sample code.
 
-#### Sample Code (`geocoder`/`arcgis`)
+#### Example Usage (`geocoder`/`arcgis`)
 
 This code will give you the latitude and longitude for one destination.
 
@@ -101,14 +85,7 @@ Capilano Suspension Bridge is located at (49.3429, -123.1149)
 
 > **Hint:** We're following the pattern in the `geonames` example in the [docs](https://geocoder.readthedocs.io/results.html), only replacing `geonames` with `arcgis`.
 
----
 
-## Check Your Work
+## Part 2 
 
-Take a look at the solution branch to check your work!
-
-## Done and Done!
-
-![](https://gph.is/2hSpbC3)
-
-Unless... you'd like to tackle [part 2](README-part2.md) as a bonus?
+If you're feeling comfortable, tackle [part 2](README-part2.md) next for an API integration!

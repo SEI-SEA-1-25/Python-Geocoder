@@ -1,54 +1,16 @@
-# Python Modules, Packages, and APIs: Practice Problems, Part 2
+# Python Geocoder - Modules, Packages, and APIs: Part 2
 
-In this lab, you're going to write code for the second of the two challenge problems. This code will continue off your code from the previous homework.
-
-You will practice these programming concepts we've covered in class:
-
-- Including and using modules and packages.
-- Using data from APIs.
+## Learning Objectives: 
+- Sending HTTP requests with the `requests` library
 - Reading documentation for modules and APIs.
 
----
+For part two of this activity, you will be continuing the work done in the previous portion and writing code in the `main.py` file.
 
-## Deliverables
-
-This lab is the second of a two-part code challenge, plus a bonus challenge. It is a little different than the other homeworks because this assignment will build on the code from Part 1. For your solution here, you can directly edit the `solution.py` file from the previous assignment.
-
-Reminder: you can run the file from your command line with the following:
-
-```bash
-python solution.py
-```
-
-> **Hint:** Make sure you are printing something out with the `print` statement. Otherwise, you won't see any output from running your program!
-
-# Requirements:
-
-By the end of this, you should have:
-
-- A file called `solution.py` with your combined code from Parts 1 and 2 (and, if you attempted it, the bonus portion).
-
----
-
-# Code Challenges
-
-## Problem 1: Geo Cody
+## Part 1 Overview:
 
 You already have the solution to this section from the previous homework. As a reminder, you put several destinations into a list of strings called `destinations`. Then, you imported the the [geocoder module](https://geocoder.readthedocs.io/providers/ArcGIS.html#geocoding) and used it to translate each landmark into latitude-longitude coordinates. You looped through the list and printed each location's latitude and longitude, then used `arcgis` to translate the places to coordinates.
 
 Your code should currently have this functionality:
-
-#### Sample Test
-
-```python
-import geocoder
-
-g = geocoder.arcgis('Redlands, California')
-
-print(g.latlng) # `latlng` is a tuple with a length of 2.
-```
-
-### Expected Output
 
 ```
 Space Needle is located at (47.6205, -122.3493)
@@ -65,30 +27,23 @@ Banff National Park is located at (51.4968, -115.9281)
 Capilano Suspension Bridge is located at (49.3429, -123.1149)
 ```
 
-**Hint:** We're following the pattern in the `geonames` example in the [docs](https://geocoder.readthedocs.io/results.html), but replacing `geonames` with `arcgis`.
-
----
-
-## Problem 2: Heather Weather
-
-### Skill you're practicing: Calling an API.
+## Part 2: Heather Weather
 
 Cody is satisfied by geolocating his landmarks, but Heather wants to take it one step further and get the current weather at each location. Help Heather with some code that calls an API to get current weather based on the latitude-longitude coordinates you already have. Take Cody's code from Problem 1 and add an API call to [OpenWeather](https://home.openweathermap.org/users/sign_up).
 
-Note: You will need to register an email address to get an API key, but it is free to use.
+> Note: You will need to register an email address to get an API key, but it is free to use.
 
 #### Directions for OpenWeather API
 
-When you first log in to the OpenWeather API site, you will see a link to your API keys (currently in the navbar at the top). Make a _new_ file called `secrets.py` with a variable called API_KEY that holds that API key. Nothing else needs to be in the file to let us import it.
-
-(Although this API key is very low security risk, it's still a good idea to add the `secrets.py` file to your `.gitignore` if it's not there already.)
+When you first log in to the OpenWeather API site, you will need to access your API keys through the link in the Navbar.
 
 Now find the API Docs. (Currently the API link in the very top navbar will bring you to their many APIs. You want the "API doc" link for "Current Weather Data".) Hunt down the endpoint URL for getting a result from latitude and longitude. We'll need that later.
 
-Back to our `solution.py` program! We'll need to `import` two things:
+- We'll be using the [requests module](http://docs.python-requests.org/en/master/api/#module-requests) to call the OpenWeather API at the "Current Weather" endpoint using our API key. 
 
-- We'll be using the [requests module](http://docs.python-requests.org/en/master/api/#module-requests) to call the OpenWeather API. Make sure to `import requests` at the top of your program. You don't need to `pip install` it--it's built in to Python.
-- We'll also need to `import` our `API_KEY` variable from `secrets.py`. We can import from it just as if it were a library. Do a little research on how to pull in that variable, and try to find a solution that specifies _which_ variable we want to import, rather than pulling everything from the file in. (We only have one thing in the file, but this is just good practice.)
+> (Although this API key is very low security risk, it's still a good idea to add our secret keys to an `.env` file, and to also add `.env` to the `.gitignore` if it's not there already.)
+
+> Look into the `python-dotenv` [pip package](https://pypi.org/project/python-dotenv/) if you're interested in learning more!
 
 #### Starter Code
 
@@ -97,7 +52,6 @@ Back to our `solution.py` program! We'll need to `import` two things:
 ```python
 # Import the module (top of the file).
 import requests
-# Import API_KEY from your secrets file.
 
 # A variable to hold the base url for our API call from the OpenWeather docs.
 API_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -111,7 +65,6 @@ for point in destinations:
     result = requests.request('GET', full_api_url).json()
 
     # From the result, print out the summary and current temperature.
-
 ```
 
 #### Expected Output
@@ -143,13 +96,13 @@ Capilano Suspension Bridge is located at (49.3432, -123.1133)
 At Capilano Suspension Bridge right now, it's Mostly Cloudy with a temperature of 65.11
 ```
 
-**Hint:** In the dictionary that holds the API results, you'll get an awful lot of data. Check the dictionary carefully, remember that dictionaries in Python use brackets and strings to access keys, watch out for lists, and note that the temperature wont come in as Fahrenheit... or Celsius?!
+**Hint:** In the dictionary that holds the API results, you'll get an awful lot of data. Check the dictionary carefully, remember that dictionaries in Python use brackets and strings to access keys! 
+
+**Hint:** Also note that the unit of measurement that the API default to is in Kelvin! Scour the API documentation for how you might change the data to Fahrenheit!
 
 ---
 
-## Bonus: Format for Matt
-
-#### Skill you're practicing: String formatting.
+## Super Bonus: String Formatting for Matt
 
 Matt likes Heather's idea of getting the weather for each location they plan on visiting, but he thinks the data is unreadable. Modify your code to:
 
